@@ -1,49 +1,47 @@
-import * as r from "probable-tribble-runtime"
-import * as characters from "./characters"
+import * as p from "probable-tribble-runtime/script"
+import {me, bob} from "./characters"
 
-r.Episode(start);
+p.Episode(start);
 
 function start() {
-    return r.Scene([
-        r.Background('bg.png'),
-        r.Enter(characters.m),
-        r.Enter(characters.b),
-        r.Narration('나레이션 부분'),
-        r.Say(characters.m, '나의 대사'),
-        r.Say(characters.b, '밥의 대사'),
-        r.Narration('연속 나레이션 1'),
-        r.Narration('연속 나레이션 2'),
-        r.Jump(menu),
+    return p.Scene([
+        p.Background('bg.png'),
+        p.Enter(me),
+        p.Enter(bob),
+        p.Narration('나레이션 부분'),
+        p.Say(me, '나의 대사'),
+        p.Say(bob, '밥의 대사'),
+        p.Narration('연속 나레이션 1'),
+        p.Narration('연속 나레이션 2'),
+        p.Jump(menu),
     ]);
 }
 
 export function menu() {
-    return r.Scene([
-        r.Menu([
-            r.TextChoice(menu_01, '1. 1번으로 이동'),
-            r.TextChoice(menu_02, '2. 2번으로 이동'),
+    return p.Scene([
+        p.Menu([
+            p.TextChoice(menu_01, '1. 1번으로 이동'),
+            p.TextChoice(menu_02, '2. 2번으로 이동'),
         ])
     ]);
 }
 
 function menu_01() {
-    return r.Scene([
-        r.Narration('1번을 선택하셨습니다.'),
-        r.Jump(menu_end),
+    return p.Scene([
+        p.Narration('1번을 선택하셨습니다.'),
+        p.Jump(menu_end),
     ]);
 }
 
 function menu_02() {
-    return r.Scene([
-        r.Narration('2번을 선택하셨습니다.'),
-        r.Jump(menu_end),
+    return p.Scene([
+        p.Narration('2번을 선택하셨습니다.'),
+        p.Jump(menu_end),
     ]);
 }
 
 function menu_end() {
-    return r.Scene([
-        r.Narration('종료합니다.'),
+    return p.Scene([
+        p.Narration('종료합니다.'),
     ]);
 }
-
-export default start;
